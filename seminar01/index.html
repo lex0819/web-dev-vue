@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Seminar01 Семинар: Введение в Vue.js</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+        <script src="./app.js" defer></script>
+    </head>
+
+    <body>
+        <h1>Семинар: Введение в Vue.js</h1>
+        <div id="app">
+            <h2>Создать кнопку "Перевернуть"</h2>
+            <button type="button" @click="reverseBtn($event)" style="cursor:pointer;">Перевернуть</button>
+            <h2>список элементов</h2>
+            <ul>
+                <li v-for="item in items" :key="item.id" @click="removeItem(item.id)" style="cursor:pointer;">
+                    {{item.name}}
+                </li>
+            </ul>
+            <button type="button" @click="addItem" style="cursor:pointer;">Добавить</button>
+        </div>
+
+    </body>
+
+</html>

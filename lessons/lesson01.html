@@ -16,11 +16,18 @@
             <h1>{{hello}}</h1>
             <div class="task02">
                 <h2>task02</h2>
-                <p>Товаров в корзине {{ counter}}</p>
-                <button type="button" @click.once="buy">{{buttonText}}</button>
-                <button type="button" @click.once="buy">{{buttonText}}</button>
-                <button type="button" @click.once="buy">{{buttonText}}</button>
-                <button type="button" @click.once="buy">{{buttonText}}</button>
+                <ul>
+                    <li v-for="product in products" :key="product.id">
+                        <span>{{product.name}} {{product.price}}</span>
+                        <button type="button" @click="buy(product.id,$event)">Buy</button>
+                    </li>
+                </ul>
+                <p>Товаров в корзине {{cart.length}}</p>
+                <ul>
+                    <li v-for="item in cart" :key="item">
+                        <span>{{item}} {{products.find(it=>item===it.id).name}}</span>
+                    </li>
+                </ul>
             </div>
             <div class="task03">
                 <h2>task03</h2>
@@ -49,11 +56,11 @@
             </div>
             <div class="task05">
                 <h2>task05</h2>
-                <button type="button" @click="getRandom">
+                <button type="button" @click="getRandomNumber">
                     Генерировать случайное число
                 </button>
-                <p v-show="isRandom">случайное число равно {{randomNumber}}</p>
-                <p>{{ randomNumberText}}</p>
+                <p>случайное число равно {{randomNumber}}</p>
+                <p>{{ numberInfo}}</p>
             </div>
         </div>
 
