@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+        <link rel="stylesheet" href="./lesson01.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+        <script src="./lesson01.js" defer></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <h1>{{hello}}</h1>
+            <div class="task02">
+                <h2>task02</h2>
+                <p>Товаров в корзине {{ counter}}</p>
+                <button type="button" @click.once="buy">{{buttonText}}</button>
+                <button type="button" @click.once="buy">{{buttonText}}</button>
+                <button type="button" @click.once="buy">{{buttonText}}</button>
+                <button type="button" @click.once="buy">{{buttonText}}</button>
+            </div>
+            <div class="task03">
+                <h2>task03</h2>
+                <button type="button" @click="age=14">Мне исполнилось 14 лет</button>
+                <button type="button" @click="age=13">Мне еще нет 14 лет</button>
+                <h3 v-if="age === 0"></h3>
+                <h3 v-else-if="age >= 14">Можете заказать товар</h3>
+                <h3 v-else="age < 14">Доступ закрыт</h3>
+            </div>
+            <div class="task04">
+                <h2>task04</h2>
+                <button type="button" @click="toggleText=!toggleText">Показать еще</button>
+                <transition name="bounce">
+                    <p v-if="toggleText">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
+                        atque, illum nihil non esse iste nesciunt aliquid ducimus officia eveniet animi libero earum,
+                        deserunt exercitationem. Quas voluptas officiis dolores sapiente?
+                    </p>
+                </transition>
+                <transition name="custom-classes-transition" enter-active-class="animate__animated animate__tada"
+                    leave-active-class="animate__animated animate__bounceOutRight">
+                    <p v-if="toggleText">
+                        привет!!!!!!!
+                    </p>
+                </transition>
+            </div>
+            <div class="task05">
+                <h2>task05</h2>
+                <button type="button" @click="getRandom">
+                    Генерировать случайное число
+                </button>
+                <p v-show="isRandom">случайное число равно {{randomNumber}}</p>
+                <p>{{ randomNumberText}}</p>
+            </div>
+        </div>
+
+    </body>
+
+</html>

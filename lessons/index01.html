@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+        <script src="./script01.js" defer></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <h1>{{message}}</h1>
+            <button type="button" v-on:click="changeH1">change h1</button>
+            <h2>counter</h2>
+            <button type="button" v-on:click="increase(5, $event)"> increase</button>
+            <p>{{counter}} </p>
+            <h2>Mouse move
+                <span v-on:mousemove.stop>
+                    stop mouse move
+                </span>
+            </h2>
+            <p v-on:mousemove="mouseMove($event)">{{ x }} : {{ y }}</p>
+            <h2>inner Html</h2>
+            <p v-html="bigText"></p>
+            <h3 v-if="!productAddToCart">Would you like to add the product to the cart?</h3>
+            <h3 v-else="productAddToCart">The product has added to the cart</h3>
+            <h2 v-show="productAddToCart">Show text!</h2>
+            <button type="button" @click="productAddToCart = !productAddToCart">add to cart</button>
+        </div>
+    </body>
+
+</html>
