@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .block {
+                width: 350px;
+                height: 200px;
+            }
+
+            .btn {
+                width: 50px;
+                height: 35px;
+            }
+
+            .like {
+                color: red;
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+        <script src="./script02.js" defer></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <div class="task01">
+                <h2>task 01</h2>
+                <input type="text" @keyup.enter="send()">
+                <!-- <input type="text" @keyup.space="send()"> -->
+                <button type="button" @click="send()">send</button>
+            </div>
+            <div class="task02">
+                <h2>task 02 link</h2>
+                <a :href="linkHref" target="_blank">my new link</a>
+                <!-- <a v-bind:href="linkHref" target="_blank">my new link</a> -->
+                <img :src="imgPhoto" alt="photo">
+                <!-- <img v-bind:src="imgPhoto" alt="photo"> -->
+            </div>
+            <div class="task03">
+                <h2>task 03 style</h2>
+                <div class="block" :style="{backgroundColor: 'grey'}"></div>
+                <div class="block" :style="styleBlock">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
+                    a cupiditate veniam voluptatem id asperiores delectus est incidunt tempora praesentium rem
+                    doloribus, odit vel hic itaque voluptatibus nemo nostrum quisquam.</div>
+            </div>
+            <div class="task04">
+                <h2>task 04 v-model</h2>
+                <h3>{{modelData}}</h3>
+                <input type="text" v-model.lazy="modelData">
+                <button type="button" @click="headingText">click heading</button>
+            </div>
+            <div class="task05">
+                <h2>task 05 calculator</h2>
+                <input type="text" v-model.number="firstNumber">
+                <input type="text" v-model.number="secondNumber">
+                =
+                {{result}}
+                <button @click="sumCalc">+</button>
+                <button @click="substractureCalc">-</button>
+                <button @click="multCalc">*</button>
+                <button @click="dividerCalc">/</button>
+            </div>
+            <div class="task06">
+                <h2>task 06 Constructor</h2>
+                <input type="text" v-model.number="blockWidth">
+                <input type="text" v-model.trim="blockColor">
+                <div :style="changeBlock">Lorem ipsum dolor sit amet</div>
+            </div>
+            <div class="task07">
+                <h2>task 07 List</h2>
+                <ul>
+                    <li v-for="item in listItems" :key="item.id">{{item}}</li>
+                    <input type="text" v-model.trim="newItem" @keyup.enter="addItem">
+                </ul>
+                <h2>articles</h2>
+                <article class="article" v-for="article in data" :key="article.id">
+                    <h3 class="article__title">{{article.title}}</h3>
+                    <p class="article__text">{{article.text}}</p>
+                    <button type="button" class="btn" :class="{like: likeToggle}"
+                        @click="likeToggle = !likeToggle">Like</button>
+                </article>
+            </div>
+        </div>
+    </body>
+
+</html>

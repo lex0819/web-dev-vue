@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+        <script src="./lesson02.js" defer></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <div class="task01">
+                <h2>Task 01 Product</h2>
+                <h3>Product: {{product.name}}</h3>
+                <p>price: {{product.price}}</p>
+                <img :src="product.url" :alt="product.name">
+                <p v-if="discount > 0">You can use discount {{discount}}</p>
+                <p v-else></p>
+                <button type="button" @click="changePrice">discount</button>
+            </div>
+            <div class="task02">
+                <h2>Task 02 Users</h2>
+                <ul>
+                    <li v-for="user in users">
+                        <span class="name">{{user.name}}</span>
+                        <span class="age">{{user.age}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="task03">
+                <h2>Task 03 Items</h2>
+                <ul>
+                    <li v-for="item in items">
+                        <span class="name">{{item.title}}</span>
+                        <input type="text" v-model.number="item.count">
+                        <input type="checkbox" v-model="item.isBought">
+                    </li>
+                </ul>
+            </div>
+            <div class="task04">
+                <h2>Task 04 Contacts</h2>
+                <form action="post">
+                    <p>Name: <input type="text" v-model.trim="newContact.name"></p>
+                    <p>Surname: <input type="text" v-model.trim="newContact.surname"></p>
+                    <p>Phone: <input type="text" v-model.trim="newContact.phone"></p>
+                    <p>{{errorFill}}</p>
+                    <button type="submit" @click="saveNewContact($event)">Save</button>
+                </form>
+                <ul>
+                    <li v-for="person in contacts">
+                        <span class="name">{{person.name}}</span>
+                        <span class="surname">{{person.surname}}</span>
+                        <span class="phone">{{person.phone}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+
+</html>
