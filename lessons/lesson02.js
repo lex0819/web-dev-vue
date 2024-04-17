@@ -45,6 +45,7 @@ new Vue({
         ],
         contacts: [
             {
+                id: 0,
                 name: 'Lena',
                 surname: 'Boom',
                 phone: '(123)450-45-45',
@@ -59,29 +60,31 @@ new Vue({
     },
 
     methods: {
-        changePrice() {
+        randomDiscount() {
             this.discount = Math.round(Math.random() * 20);
-            this.product.price = (
-                (this.product.price / 100) *
-                (100 - this.discount)
-            ).toFixed(2);
         },
+
         saveNewContact(event) {
             event.preventDefault();
             this.errorFill = '';
             for (const field in this.newContact) {
                 // console.log(this.newContact[field]);
-                try {
-                    if (this.newContact[field] === '') {
-                        this.errorFill = 'You have to fill all fields correct!';
-                        throw new Error('You have to fill all fields correct!');
-                    }
-                } catch (error) {
-                    console.error(error.message);
+                if (this.newContact[field] === '') {
+                    this.errorFill = 'You have to fill all fields correct!';
                 }
             }
             if (this.errorFill === '') {
-                this.contacts.push(this.newContact);
+                // this.newContact.id = this.getLastContactId + 1;
+                this.contacts.push({
+                    id: this.contacts.length,
+                    ...this.newContact,
+                });
+
+                //Copy object as new object!!!
+                //this.contacts.push(JSON.parse(JSON.stringify(this.newContact)))
+                //or
+                //this.contacts.push(structuredClone(this.newContact))
+
                 this.newContact = {
                     name: '',
                     surname: '',
@@ -90,5 +93,14 @@ new Vue({
             }
         },
     },
-    computed: {},
+    computed: {
+        getPrice() {
+            return ((this.product.price / 100) * (100 - this.discount)).toFixed(
+                2
+            );
+        },
+        // getLastContactId() {
+        //     return this.contacts[this.contacts.length - 1].id;
+        // },
+    },
 });

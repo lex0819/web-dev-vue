@@ -16,9 +16,9 @@
                 <h3>Product: {{product.name}}</h3>
                 <p>price: {{product.price}}</p>
                 <img :src="product.url" :alt="product.name">
-                <p v-if="discount > 0">You can use discount {{discount}}</p>
+                <p v-if="discount > 0">You can use discount {{getPrice}}</p>
                 <p v-else></p>
-                <button type="button" @click="changePrice">discount</button>
+                <button type="button" @click="randomDiscount">discount</button>
             </div>
             <div class="task02">
                 <h2>Task 02 Users</h2>
@@ -45,11 +45,11 @@
                     <p>Name: <input type="text" v-model.trim="newContact.name"></p>
                     <p>Surname: <input type="text" v-model.trim="newContact.surname"></p>
                     <p>Phone: <input type="text" v-model.trim="newContact.phone"></p>
-                    <p>{{errorFill}}</p>
+                    <p v-show="errorFill">{{errorFill}}</p>
                     <button type="submit" @click="saveNewContact($event)">Save</button>
                 </form>
                 <ul>
-                    <li v-for="person in contacts">
+                    <li v-for="person in contacts" :key="person.id">
                         <span class="name">{{person.name}}</span>
                         <span class="surname">{{person.surname}}</span>
                         <span class="phone">{{person.phone}}</span>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Homework02</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+        <script src="./app.js" defer></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div id="app">
+                <div class="products">
+                    <div class="products__sort">
+                        <button type="button" @click="productsSortAsc">ASC</button>
+                        <button type="button" @click="productsSortDesc">DESC</button>
+                    </div>
+                    <h2>Products list</h2>
+                    <ul class="products__list">
+                        <li class="product" v-for="product in products" :key="product.id">
+                            <strong>{{product.title}}</strong> <i>{{product.price}}$</i>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>
