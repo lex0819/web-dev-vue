@@ -4,6 +4,11 @@
 
 См. в файлах [index.html](./index.html) и [app.js](./app.js)
 
+## проект к итоговой аттестации
+
+Ссылка на репозиторий с финальным проектом
+[GeekBrains-final-project](https://github.com/lex0819/gb-finally_project/tree/main/website-layout)
+
 ## Часть 1. Работа с макетом
 
 Продолжаем создание макета:
