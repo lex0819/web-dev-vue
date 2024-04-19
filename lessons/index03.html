@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>lesson03</title>
+
+        <!-- <script src="./lesson02.js" defer></script> -->
+    </head>
+
+    <body>
+        <div id="app">
+            <new-component header="Kolobok">
+                <p>Text from slot</p>
+            </new-component>
+            <new-component header="Zaika">
+                <p>Text from slot</p>
+            </new-component>
+            <new-component :header="article" v-for="article in articles" :key="article.id">
+            </new-component>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="./component03.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    message: 'text message',
+                    articles: [
+                        'info01',
+                        'info02',
+                        'info03',
+                    ]
+                },
+                methods: {
+                    newInfo() {
+                        console.log('hello from methods');
+                    }
+                },
+                computed: {
+                    newComp() {
+                        return this.message;
+                    }
+                },
+            })
+        </script>
+    </body>
+
+</html>
