@@ -7,38 +7,61 @@
 Vue.component('products', {
     props: ['products'],
     data() {
-        return {};
+        return {
+            sortDirection: '',
+        };
     },
     methods: {
-        productsSortAsc() {
-            this.products.sort((a, b) => a.price - b.price);
+        sortUp() {
+            this.sortDirection = 'up';
         },
-        productsSortDesc() {
-            this.products.sort((a, b) => b.price - a.price);
+        sortDown() {
+            this.sortDirection = 'down';
+        },
+        sortReset() {
+            this.sortDirection = '';
         },
     },
-    computed: {},
+    computed: {
+        sortProducts() {
+            const copyProducts = [...this.products];
+            switch (this.sortDirection) {
+                case 'up':
+                    return copyProducts.sort((a, b) => a.price - b.price);
+                case 'down':
+                    return copyProducts.sort((a, b) => b.price - a.price);
+                default:
+                    return this.products;
+            }
+        },
+    },
     template: `
     <div class="products">
         <h3>Products list</h3>
         <div class="products__sort">
             <button 
                 type="button" 
-                @click="productsSortAsc"
+                @click="sortUp"
                 class="btn btn-info">
                 ASC
             </button>
             <button 
                 type="button" 
-                @click="productsSortDesc"
+                @click="sortDown"
                 class="btn btn-info">
                 DESC
+            </button>
+            <button 
+                type="button" 
+                @click="sortReset"
+                class="btn btn-info">
+                RESET
             </button>
         </div>
         <ul class="products__list">
             <li 
                 class="products__item"
-                v-for="product in products"
+                v-for="product in sortProducts"
                 :key="product.id">
                 <product 
                     :product="product">
