@@ -18,7 +18,7 @@
                 v-for="product in sortProducts"
                 :key="product.id"
             >
-                <ProductItem :product="product"> </ProductItem>
+                <ProductItem :product="product" />
             </li>
         </ul>
     </div>
