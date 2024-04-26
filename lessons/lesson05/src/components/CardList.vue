@@ -8,23 +8,29 @@
             <div class="col">
                 <strong>Subtotal</strong>
             </div>
+            <div class="col">show description</div>
         </h5>
         <ul>
-            <li
-                v-for="(product, index) in products"
-                :key="index"
-                class="row p-2"
-            >
-                <div class="col">{{ product.name }}</div>
-                <div class="col">{{ product.price }}</div>
-                <input
-                    class="col"
-                    type="text"
-                    v-model.number="product.count"
-                    @input="setSubtotal(index)"
-                />
-                <div class="col">
-                    <strong>Subtotal: {{ subtotals[index] }}</strong>
+            <li v-for="product in products" :key="product.id" class="row p-2">
+                <div class="row p-2">
+                    <div class="col">{{ product.name }}</div>
+                    <div class="col">{{ product.price }}</div>
+                    <input
+                        class="col"
+                        type="number"
+                        v-model.number="product.count"
+                    />
+                    <div class="col">
+                        <strong>{{ product.count * product.price }}</strong>
+                    </div>
+                    <input
+                        type="checkbox"
+                        @change="toggleDescription(product.id)"
+                        class="col"
+                    />
+                </div>
+                <div class="col" v-if="showDescription.includes(product.id)">
+                    {{ product.desc }}
                 </div>
             </li>
         </ul>
@@ -33,27 +39,24 @@
 </template>
 
 <script>
-import Vue from 'vue';
-
 export default {
     name: 'CardList',
     props: ['products'],
 
     data() {
         return {
-            subtotals: [],
+            showDescription: [],
         };
     },
-    mounted() {
-        this.subtotals = this.products.map((it) => it.price * it.count);
-    },
+    mounted() {},
     methods: {
-        setSubtotal(index) {
-            Vue.set(
-                this.subtotals,
-                index,
-                this.products[index].price * this.products[index].count
-            );
+        toggleDescription(id) {
+            const ind = this.showDescription.indexOf(id);
+            if (ind !== -1) {
+                this.showDescription.splice(ind, 1);
+            } else {
+                this.showDescription.push(id);
+            }
         },
     },
     computed: {

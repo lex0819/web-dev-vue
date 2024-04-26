@@ -1,25 +1,16 @@
 <template>
     <div id="app">
-        <CalcFunc />
-        <AuthComp />
-        <CardList :products="products" />
-        <MortgageCalculator />
+        <ProductList :products="products" />
     </div>
 </template>
 
 <script>
-import CalcFunc from '@/components/CalcFunc';
-import AuthComp from '@/components/AuthComp';
-import CardList from '@/components/CardList';
-import MortgageCalculator from '@/components/MortgageCalculator';
+import ProductList from '@/components/ProductList.vue';
 
 export default {
     name: 'App',
     components: {
-        CalcFunc,
-        AuthComp,
-        CardList,
-        MortgageCalculator,
+        ProductList,
     },
     data() {
         return {
@@ -33,21 +24,35 @@ export default {
                     id: 0,
                     name: 'shirt',
                     price: 100,
-                    count: 2,
+                    available: true,
                     desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque accusamus animi exercitationem est libero sequi! Error modi cupiditate maiores unde voluptatum itaque at nam sunt, ipsum illum sequi a id.',
                 },
                 {
                     id: 1,
                     name: 'boots',
                     price: 150,
-                    count: 3,
+                    available: false,
                     desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque accusamus animi exercitationem est libero sequi! Error modi cupiditate maiores unde voluptatum itaque at nam sunt, ipsum illum sequi a id.',
                 },
                 {
                     id: 2,
                     name: 'hat',
                     price: 50,
-                    count: 1,
+                    available: true,
+                    desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque accusamus animi exercitationem est libero sequi! Error modi cupiditate maiores unde voluptatum itaque at nam sunt, ipsum illum sequi a id.',
+                },
+                {
+                    id: 3,
+                    name: 'hat',
+                    price: 170,
+                    available: true,
+                    desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque accusamus animi exercitationem est libero sequi! Error modi cupiditate maiores unde voluptatum itaque at nam sunt, ipsum illum sequi a id.',
+                },
+                {
+                    id: 4,
+                    name: 'hat',
+                    price: 250,
+                    available: false,
                     desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque accusamus animi exercitationem est libero sequi! Error modi cupiditate maiores unde voluptatum itaque at nam sunt, ipsum illum sequi a id.',
                 },
             ];
@@ -55,23 +60,8 @@ export default {
     },
     created() {
         this.products = this.fetchData();
-        this.isAuthenticated = false;
-    },
-    mounted() {
-        // setTimeout(() => {
-        //     this.isAuthenticated = true;
-        // }, 7000);
     },
 };
 </script>
 
-<style>
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-}
-</style>
+<style></style>
