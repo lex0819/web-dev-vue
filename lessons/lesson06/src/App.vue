@@ -4,7 +4,7 @@
             <div>My personal costs</div>
         </header>
         <main>
-            <PaymentsDisplay :items="paymentsList" />
+            <PaymentsDisplay />
             <AddPaymentForm @addNewPayment="addNewPayment" />
         </main>
     </div>
@@ -13,6 +13,7 @@
 <script>
 import PaymentsDisplay from '@/components/PaymentsDisplay';
 import AddPaymentForm from '@/components/AddPaymentForm';
+import { mapMutations } from 'vuex';
 
 export default {
     name: 'App',
@@ -48,9 +49,13 @@ export default {
         addNewPayment(data) {
             this.paymentsList = [...this.paymentsList, data];
         },
+        ...mapMutations({
+            updatePayments: 'setPaymentsListData',
+        }),
     },
     created() {
-        this.paymentsList = this.fetchData();
+        this.$store.commit('setPaymentsListData', this.fetchData());
+        // this.setPaymentsListData(this.fetchData());
     },
 };
 </script>

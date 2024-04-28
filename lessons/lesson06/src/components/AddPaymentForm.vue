@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
     name: 'AddPaymentForm',
 
@@ -19,6 +21,7 @@ export default {
         };
     },
     computed: {
+        ...mapMutations(['setPaymentsListData']),
         getCurrentDate() {
             const today = new Date();
             const d = today.getDate();
@@ -34,7 +37,8 @@ export default {
                 type: this.type,
                 date: this.date || this.getCurrentDate,
             };
-            this.$emit('addNewPayment', data);
+            // this.$emit('addNewPayment', data);
+            this.commit('setPaymentsListData', data);
         },
     },
 };
