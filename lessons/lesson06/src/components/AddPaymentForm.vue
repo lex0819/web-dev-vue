@@ -1,8 +1,8 @@
 <template>
     <div>
-        <input placeholder="Amount" v-model="amount" />
-        <input placeholder="Type" v-model="type" />
-        <input placeholder="Date" v-model="date" />
+        <input type="number" placeholder="Amount" v-model.number="value" />
+        <input type="text" placeholder="category" v-model.trim="category" />
+        <input type="text" placeholder="Date" v-model="date" />
         <button @click="onSaveClick">Save!</button>
     </div>
 </template>
@@ -15,13 +15,12 @@ export default {
 
     data() {
         return {
-            amount: '',
-            type: '',
+            value: '',
+            category: '',
             date: '',
         };
     },
     computed: {
-        ...mapMutations(['setPaymentsListData']),
         getCurrentDate() {
             const today = new Date();
             const d = today.getDate();
@@ -31,14 +30,20 @@ export default {
         },
     },
     methods: {
+        ...mapMutations({ addPay: 'addDataToPaymentsList' }),
         onSaveClick() {
             const data = {
-                amount: +this.amount,
-                type: this.type,
                 date: this.date || this.getCurrentDate,
+                category: this.category,
+                value: Number(this.value),
             };
+            // console.log(data);
+            // this.$store.commit('addDataToPaymentsList', data);
             // this.$emit('addNewPayment', data);
-            this.commit('setPaymentsListData', data);
+            this.addPay(data);
+            this.value = '';
+            this.category = '';
+            this.date = '';
         },
     },
 };

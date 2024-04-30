@@ -4,24 +4,45 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+// const state = {
+//     paymentsList: [],
+//     categoryList: [],
+// };
+
+// const mutations = {
+//     setPaymentsListData(state, payload) {
+//         state.paymentsList = payload;
+//     },
+//     addDataToPaymentsList(state, payload) {
+//         state.paymentsList.push(payload);
+//     },
+//     ediPaymentsListFirstElement(state, payload) {
+//         Vue.set(state.paymentsList, 0, payload);
+//     },
+//     setCategories(state, payload) {
+//         if (!Array.isArray(payload)) {
+//             payload = [payload];
+//         }
+//         state.categoryList.push(...payload);
+//     },
+// };
+
+// const getters = {
+//     // получаем список paymentsList
+//     getPaymentsList: (state) => {
+//         state.paymentsList;
+//     },
+//     // получаем суммарную стоимость всех платежей
+//     getFullPaymentValue: (state) => {
+//         return state.paymentsList.reduce((res, cur) => res + cur.value, 0);
+//     },
+//     getCategoryList: (state) => {
+//         state.categoryList;
+//     },
+// };
+
 export default new Vuex.Store({
-    state: {
-        paymentsList: [],
-        categoryList: [],
-    },
-    getters: {
-        // получаем список paymentsList
-        getPaymentsList(state) {
-            state.paymentsList;
-        },
-        // получаем суммарную стоимость всех платежей
-        getFullPaymentValue(state) {
-            return state.paymentsList.reduce((res, cur) => res + cur.value, 0);
-        },
-        getCategoryList(state) {
-            state.categoryList;
-        },
-    },
+    state: { paymentsList: [] },
     mutations: {
         setPaymentsListData(state, payload) {
             state.paymentsList = payload;
@@ -29,15 +50,15 @@ export default new Vuex.Store({
         addDataToPaymentsList(state, payload) {
             state.paymentsList.push(payload);
         },
-        ediPaymentsListFirstElement(state, payload) {
-            Vue.set(state.paymentsList, 0, payload);
+    },
+    getters: {
+        getFullPaymentValue: (state) => {
+            return state.paymentsList.reduce(
+                (accum, cur) => accum + cur.value,
+                0
+            );
         },
-        setCategories(state, payload) {
-            if (!Array.isArray(payload)) {
-                payload = [payload];
-            }
-            state.categoryList.push(...payload);
-        },
+        getPaymentsList: (state) => state.paymentsList,
     },
     actions: {
         fetchData({ commit }) {

@@ -1,12 +1,13 @@
 <template>
     <div class="mt-2">
         <div class="row">
-            <h4 class="col col-9">Title: {{ movie.Title }}</h4>
-            <p class="col-3">Year: {{ movie.Year }}</p>
-        </div>
-        <div>
-            <textarea name="" id="" cols="20" rows="5"></textarea>
-            <button @click="sendReview" class="btn btn-warning">save</button>
+            <h4 class="col col-9">Title: {{ movie.title }}</h4>
+            <input
+                type="text"
+                placeholder="Year"
+                v-model="year"
+                class="col-3"
+            />
         </div>
         <button
             @click="showMore"
@@ -15,10 +16,13 @@
         >
             {{ setMoreBtnTxt }}
         </button>
+        <button @click="editMovie" class="btn btn-danger">
+            Change movie's info
+        </button>
         <div v-if="isShowMore" class="alert alert-info">
-            <p>Runtime {{ movie.Runtime }}</p>
+            <input type="text" placeholder="Runtime" v-model="runtime" />
             <div>
-                <img :src="movie.Poster" alt="image" />
+                <img :src="movie.poster" alt="image" class="img-size" />
             </div>
         </div>
     </div>
@@ -38,15 +42,25 @@ export default {
     data() {
         return {
             isShowMore: false,
+            year: '',
+            runtime: '',
         };
+    },
+    created() {
+        this.year = this.movie.year;
+        this.runtime = this.movie.runtime;
     },
     methods: {
         showMore() {
             this.isShowMore = !this.isShowMore;
         },
-        sendReview() {
-            const data = '';
-            this.this.$emit('getReview', data);
+        editMovie() {
+            const data = {
+                runtime: this.runtime,
+                year: this.year,
+                id: this.movie.id,
+            };
+            this.$emit('getMovieInfo', data);
         },
     },
     computed: {
@@ -60,3 +74,9 @@ export default {
     },
 };
 </script>
+<style>
+.img-size {
+    width: 300px;
+    height: 450px;
+}
+</style>

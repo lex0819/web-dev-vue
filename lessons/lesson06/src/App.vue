@@ -1,11 +1,11 @@
 <template>
     <div id="app">
         <header>
-            <div>My personal costs</div>
+            <h1>My personal costs</h1>
         </header>
         <main>
+            <AddPaymentForm />
             <PaymentsDisplay />
-            <AddPaymentForm @addNewPayment="addNewPayment" />
         </main>
     </div>
 </template>
@@ -23,10 +23,12 @@ export default {
     },
     data() {
         return {
+            show: true,
             paymentsList: [],
         };
     },
     methods: {
+        ...mapMutations({ addPayment: 'setPaymentsListData' }),
         fetchData() {
             return [
                 {
@@ -46,16 +48,14 @@ export default {
                 },
             ];
         },
-        addNewPayment(data) {
-            this.paymentsList = [...this.paymentsList, data];
-        },
-        ...mapMutations({
-            updatePayments: 'setPaymentsListData',
-        }),
+        // addNewPayment(data) {
+        //     this.paymentsList = [...this.paymentsList, data];
+        // },
     },
     created() {
-        this.$store.commit('setPaymentsListData', this.fetchData());
-        // this.setPaymentsListData(this.fetchData());
+        //call mutation
+        // this.$store.commit('setPaymentsListData', this.fetchData());
+        this.addPayment(this.fetchData());
     },
 };
 </script>
