@@ -13,7 +13,7 @@
 <script>
 import PaymentsDisplay from '@/components/PaymentsDisplay';
 import AddPaymentForm from '@/components/AddPaymentForm';
-import { mapMutations } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
 
 export default {
     name: 'App',
@@ -28,7 +28,7 @@ export default {
         };
     },
     methods: {
-        ...mapMutations({ addPayment: 'setPaymentsListData' }),
+        ...mapMutations(['SET_PAYMENT', 'ADD_PAY']),
         fetchData() {
             return [
                 {
@@ -48,14 +48,19 @@ export default {
                 },
             ];
         },
-        // addNewPayment(data) {
-        //     this.paymentsList = [...this.paymentsList, data];
-        // },
+        addNewPayment(data) {
+            // this.paymentsList = [...this.paymentsList, data];
+            this.ADD_PAY(data);
+        },
+    },
+    computed: {
+        ...mapState(['paymentList']),
     },
     created() {
         //call mutation
         // this.$store.commit('setPaymentsListData', this.fetchData());
-        this.addPayment(this.fetchData());
+        // this.paymentList = this.fetchData();
+        this.SET_PAYMENT(this.fetchData());
     },
 };
 </script>
