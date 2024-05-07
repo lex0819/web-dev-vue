@@ -1,19 +1,21 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+// import Vue from 'vue';
+// import Vuex from 'vuex';
 
-Vue.use(Vuex);
+// Vue.use(Vuex);
 
-export default new Vuex.Store({
+// export default new Vuex.Store({
+
+export default {
     state: {
         count: 0,
         cartItems: [],
         productsList: [],
     },
     mutations: {
-        INCREASE(state, payload) {
+        INCREASE(state) {
             state.count++;
         },
-        DECREASE(state, payload) {
+        DECREASE(state) {
             if (state.count > 0) {
                 state.count--;
             } else {
@@ -21,7 +23,6 @@ export default new Vuex.Store({
             }
         },
         SET_PRODUCTS(state, payload) {
-            console.log(payload);
             state.productsList = payload;
         },
         SET_CART(state, payload) {
@@ -56,6 +57,9 @@ export default new Vuex.Store({
             });
             state.productsList = [...newProductsList];
         },
+        ADD_NEW_PRODUCT(state, payload) {
+            state.productsList.push({ ...payload, inCart: false });
+        },
     },
     getters: {
         productsList: (state) => state.productsList,
@@ -79,4 +83,4 @@ export default new Vuex.Store({
             commit('ADD_ITEM_TO_CART', payload);
         },
     },
-});
+};

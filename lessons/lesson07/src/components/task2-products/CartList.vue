@@ -46,7 +46,6 @@ export default {
             this.SET_ENABLE_PRODUCT(id);
         },
         setCountItem(payload) {
-            console.log(payload);
             this.CHANGE_ITEM_COUNT_IN_CART(payload);
         },
     },
