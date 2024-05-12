@@ -1,6 +1,5 @@
 <template>
-    <div class="about">
-        <h1>the post</h1>
+    <div class="post">
         <MainPost />
     </div>
 </template>

@@ -5,20 +5,13 @@
 </template>
 
 <script>
-import PostsList from '@/components/PostsList.vue';
+import PostsList from '@/components/home/PostsList.vue';
 
 export default {
     name: 'MainList',
     components: {
         PostsList,
     },
-    data() {
-        return {};
-    },
-
-    mounted() {},
-
-    methods: {},
 };
 </script>
 <style>

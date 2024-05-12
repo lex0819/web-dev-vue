@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomePage from '@/pages/HomePage.vue';
+// import store from '@/store/index.js'; // check existing id of post
 
 Vue.use(VueRouter);
 
@@ -13,10 +14,22 @@ const routes = [
     {
         path: '/post/:id',
         name: 'post',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: () => import('@/pages/PostPage.vue'),
+        //it works only first
+        //but it redirect to 404 after refresh!!!!!
+        //check existing id of post in vuex and redirect to 404 when id is not existed
+        // beforeEnter: (to, from, next) => {
+        //     console.log('to', to);
+        //     console.log('from', from);
+        //     const isId = store.getters.getPostById(to.params.id);
+        //     console.log(isId);
+        //     if (isId) {
+        //         next();
+        //         return;
+        //     } else {
+        //         next('/404');
+        //     }
+        // },
     },
     {
         path: '/404',

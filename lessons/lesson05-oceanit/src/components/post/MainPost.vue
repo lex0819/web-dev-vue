@@ -1,12 +1,17 @@
 <template>
     <div>
+        <nav>
+            <router-link to="/">Home</router-link>
+        </nav>
         <div v-if="getPost">
             <h1>{{ getPost.title }}</h1>
             <p>{{ getPost.body }}</p>
             <UserOwner :user="getPost.userId" />
-            <PostComments :post="id" />
+            <PostComments />
         </div>
-        <div v-else>The post is not found</div>
+        <div v-else>
+            <h1>the post {{ id }} is not found</h1>
+        </div>
     </div>
 </template>
 
@@ -24,14 +29,10 @@ export default {
     data() {
         return {
             id: null,
-            // userId: null,
         };
     },
     methods: {
         ...mapMutations(['SET_POSTS']),
-        // getUserId(id) {
-        //     this.activeUser = id;
-        // },
     },
     computed: {
         ...mapState(['posts']),

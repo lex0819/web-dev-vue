@@ -21,7 +21,7 @@
 
 <script>
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
-import UsersList from '@/components/UsersList.vue';
+import UsersList from '@/components/home/UsersList.vue';
 
 export default {
     name: 'PostsList',

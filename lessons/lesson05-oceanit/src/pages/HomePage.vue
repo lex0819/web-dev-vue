@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import MainList from '@/components/MainList.vue';
+import MainList from '@/components/home/MainList.vue';
 
 export default {
     name: 'HomePage',

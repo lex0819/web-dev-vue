@@ -9,6 +9,17 @@ export default new Vuex.Store({
         users: [],
         comments: [],
     },
+    mutations: {
+        SET_POSTS(state, payload) {
+            state.posts = payload;
+        },
+        SET_USERS(state, payload) {
+            state.users = payload;
+        },
+        SET_COMMENTS(state, payload) {
+            state.comments = payload;
+        },
+    },
     getters: {
         getListPostsByUserId: (state) => (id) => {
             if (id) {
@@ -19,21 +30,27 @@ export default new Vuex.Store({
         },
         getPostById: (state) => (id) => {
             if (id) {
-                return state.posts.find((post) => id == post.id);
+                //Object.values() is fix for error find is not a function
+                return Object.values(state.posts).find((post) => id == post.id);
             } else {
                 return null;
             }
         },
-    },
-    mutations: {
-        SET_POSTS(state, payload) {
-            state.posts = payload;
+        getUserById: (state) => (id) => {
+            if (id) {
+                return Object.values(state.users).find((user) => id == user.id);
+            } else {
+                return null;
+            }
         },
-        SET_USERS(state, payload) {
-            state.users = payload;
-        },
-        SET_COMMENTS(state, payload) {
-            state.comments = payload;
+        getCommentsByPostId: (state) => (id) => {
+            if (id) {
+                return Object.values(state.comments).filter(
+                    (it) => id == it.postId
+                );
+            } else {
+                return null;
+            }
         },
     },
     actions: {
