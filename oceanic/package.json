@@ -1,5 +1,5 @@
 {
-  "name": "vite-oceanit",
+  "name": "okeanic",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -11,6 +11,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "axios": "^1.6.8",
+    "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
@@ -21,7 +23,6 @@
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
     "prettier": "^3.2.5",
-    "vite": "^5.2.8",
-    "vite-plugin-vue-devtools": "^7.0.25"
+    "vite": "^5.2.8"
   }
 }

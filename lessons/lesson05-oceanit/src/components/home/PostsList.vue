@@ -13,6 +13,15 @@
                         </router-link>
                     </li>
                 </ul>
+                <!-- <nav>
+                    <ul class="pagination">
+                        <li v-for="page in totalPages" :key="page">
+                            <router-link :to="`/${page}`">
+                                {{ page }}
+                            </router-link>
+                        </li>
+                    </ul>
+                </nav> -->
             </div>
             <UsersList @selectUser="getUserId" />
         </div>
@@ -31,6 +40,7 @@ export default {
     data() {
         return {
             activeUser: null,
+            perPage: 8,
         };
     },
     methods: {
@@ -43,6 +53,22 @@ export default {
         ...mapState(['posts']),
         ...mapActions(['fetchPosts']),
         ...mapGetters(['getListPostsByUserId']),
+        // allPosts() {
+        //     return this.getListPostsByUserId(this.activeUser);
+        // },
+        // currentPage() {
+        //     //получаем текущую страницу прямо из роутера
+        //     return this.$route.params.page || 1;
+        // },
+        // totalPages() {
+        //     return Math.ceil(this.allPosts.length / this.perPage);
+        // },
+        // paginatedPostsList() {
+        //     const { currentPage, perPage } = this;
+        //     const startIndex = (currentPage - 1) * perPage;
+        //     const endIndex = startIndex + perPage;
+        //     return Object.values(this.allPosts).slice(startIndex, endIndex);
+        // },
     },
     created() {
         this.SET_POSTS(this.fetchPosts);

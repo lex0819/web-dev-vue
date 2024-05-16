@@ -1,13 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomePage from '@/pages/HomePage.vue';
-// import store from '@/store/index.js'; // check existing id of post
 
 Vue.use(VueRouter);
 
 const routes = [
     {
-        path: '/',
+        path: '/:page?',
         name: 'home',
         component: HomePage,
     },
