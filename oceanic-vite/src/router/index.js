@@ -22,11 +22,11 @@ const router = createRouter({
     ]
 });
 
-router.beforeResolve((to) => {
-    const global = inject('global'); // 'hello injections'
-    // a pinia store
-    const postStore = usePostsStore();
-    if (!postStore.getPostById(to.params.id)) return { name: 'NotFound' };
-});
+// router.beforeResolve((to) => {
+//     // const global = inject('global'); // 'hello injections'
+//     // a pinia store
+//     const postStore = usePostsStore();
+//     if (!postStore.getPostById(to.params.id)) return { name: 'NotFound' };
+// });
 
 export default router;
