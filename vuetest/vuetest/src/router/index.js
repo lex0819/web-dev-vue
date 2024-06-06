@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '@/views/HomeView.vue';
 import PostsView from '@/views/PostsView.vue';
 import PostView from '@/views/PostView.vue';
 import AuthorView from '@/views/AuthorView.vue';
@@ -9,7 +10,12 @@ const router = createRouter({
         {
             path: '/',
             name: 'home',
-            component: PostsView,
+            component: HomeView,
+        },
+        {
+            path: '/posts',
+            name: 'posts',
+            component: () => import('@/views/PostsView.vue'),
         },
         {
             path: '/post/:id',
@@ -25,6 +31,11 @@ const router = createRouter({
             path: '/author/:username',
             name: 'author',
             component: AuthorView,
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'notfound',
+            component: () => import('@/views/NotFound.vue'),
         },
     ],
 });

@@ -12,22 +12,21 @@ const { getPostsPerAuthor } = storeToRefs(usePostStore());
 const { fetchPosts } = usePostStore();
 const { fetchAuthors } = useAuthorStore();
 
-const getAuthorByUserName = computed(() => {
-    return authors.value.find(
-        (author) => author.username === route.params.username
-    );
-});
 
 fetchPosts();
 fetchAuthors();
+const getAuthorByUserName = computed(() => {
+    return authors?.value.find(
+        (author) => author.username === route.params.username
+    ) || 1;
+});
 </script>
 
 <template>
     <div>
-        <author
+        <Author
             :author="getAuthorByUserName"
             :posts="getPostsPerAuthor(getAuthorByUserName.id)"
-        >
-        </author>
+        />
     </div>
 </template>

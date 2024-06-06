@@ -16,9 +16,12 @@ export const usePostStore = defineStore({
         getTotalPosts(state) {
             return state.posts.length;
         },
-        getTotalPostsByUserId: (state) => {
-            return (id) =>
-                state.posts.filter((post) => id == post.userId).length;
+        getTotalPostsPerAuthorId(state){
+            return function(id){
+                const arr = state.posts.filter((post) => id == post.userId)
+                const counts = arr.length
+                return counts
+            }
         },
     },
     actions: {
